@@ -14,10 +14,12 @@ CREATE TABLE Packages
      shipping_city      varchar(15),
      shipping_zip       numeric(5,0),
      shipping_country   varchar(15),
+     shipping_state     varchar(15),
      next_distro_id     numeric(4,0),
      out_for_del        numeric(1,0),
      status             varchar(15),
      account_id_ref     numeric(10,0),
+     
      PRIMARY KEY (package_id)
      );
      
@@ -32,7 +34,7 @@ CREATE TABLE Account
      default_shipping_city      varchar(15),
      default_shipping_zip       numeric(5,0),
      default_shipping_country   varchar(15),
-     active_package_ids         varchar(15), -- Needs to be a multiple field, not sure how to do.
+     default_shipping_state     varchar(15),
      primary key (account_id)
      --foreign key (account_id) REFERENCES Packages,
      --foreign key (active_package_ids) REFERENCES Packages -- Might get rid of
@@ -46,4 +48,5 @@ add foreign key (next_distro_id) references distro;
 
 alter table packages
 add foreign key (account_id_ref) references account(account_id);
+
 
