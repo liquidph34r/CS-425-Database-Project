@@ -40,6 +40,23 @@ CREATE TABLE Account
      --foreign key (active_package_ids) REFERENCES Packages -- Might get rid of
      );
      
+     CREATE TABLE Employee
+     (employee_id               numeric(10,0),
+     first_name                 varchar(10),
+     last_name                  varchar(10),
+     Middle_init                varchar(1),
+     email                      varchar(20),
+     password                   varchar(35),
+     default_shipping_adress    varchar(15),
+     default_shipping_city      varchar(15),
+     default_shipping_zip       numeric(5,0),
+     default_shipping_country   varchar(15),
+     default_shipping_state     varchar(15),
+     assigned_distro_id         numeric(4,0),
+     primary key (employee_id),
+     foreign key(assigned_distro_id) references distro(distro_id)
+     );
+     
 alter table packages
 add foreign key (last_distro_id) references distro;
 
