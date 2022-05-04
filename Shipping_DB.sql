@@ -24,7 +24,7 @@ CREATE TABLE Packages
      );
      
 CREATE TABLE Account
-    (Account_id                 numeric(10,0),
+    (Account_id                 numeric(10,0) NOT NULL AUTO_INCREMENT,
      first_name                 varchar(10),
      last_name                  varchar(10),
      Middle_init                varchar(1),
