@@ -24,7 +24,7 @@ CREATE TABLE Packages
      );
      
 CREATE TABLE Account
-    (Account_id                 numeric(10,0) NOT NULL AUTO_INCREMENT,
+    (Account_id                 numeric(10,0) NOT NULL,
      first_name                 varchar(10),
      last_name                  varchar(10),
      Middle_init                varchar(1),
@@ -39,6 +39,18 @@ CREATE TABLE Account
      --foreign key (account_id) REFERENCES Packages,
      --foreign key (active_package_ids) REFERENCES Packages -- Might get rid of
      );
+     
+     --Auto Increment for Account_ID
+     
+    create sequence account_seq;
+    
+    create or replace trigger account_trg
+    before insert on account
+    for each row
+    begin
+        select account_seq.nextval into :NEW.account_id from dual;
+    end;
+    /
      
      CREATE TABLE Employee
      (employee_id               numeric(10,0),
