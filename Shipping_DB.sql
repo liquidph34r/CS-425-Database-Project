@@ -53,7 +53,7 @@ CREATE TABLE Account
     /
      
      CREATE TABLE Employee
-     (employee_id               numeric(10,0),
+     (employee_id               numeric(10,0) NOT NULL,
      first_name                 varchar(10),
      last_name                  varchar(10),
      Middle_init                varchar(1),
@@ -69,6 +69,16 @@ CREATE TABLE Account
      foreign key(assigned_distro_id) references distro(distro_id)
      );
      
+    create sequence employees_seq;
+    
+    create or replace trigger employee_trg
+    before insert on account
+    for each row
+    begin
+        select employees_seq.nextval into :NEW.employee_id from dual;
+    end;
+    /
+    
 alter table packages
 add foreign key (last_distro_id) references distro;
 
